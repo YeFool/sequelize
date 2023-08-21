@@ -59,10 +59,10 @@ const deleteEverything = async (req, res) => {
 
 const updateBook = async (req, res) => {
     try  {
-        const updateOne = await Book.update({author: req.body.newAuthor, title: req.body.title}, { 
-            // where: {
-            //     author: null
-            // }
+        const updateOne = await Book.update({[req.body.updateKey]: req.body.updateValue}, { 
+            where: {
+                title: req.body.title
+            }
         });
         res.status(200).json({message: "Success", book: updateOne})
     } catch (error) {
